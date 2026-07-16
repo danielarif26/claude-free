@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# claude-free — emergency fallback lane when the Anthropic subscription is rate-limited.
+# Routes Claude Code through claude-code-router (ccr) to FREE providers:
+#   - GitHub Models free tier (gh auth token, refreshed at each launch)
+#   - local Ollama as background-task lane (if running)
+# Usage: claude-free [any claude args]
+# Quality is below Claude models — use to keep working, not for hard problems.
+set -euo pipefail
+
+command -v ccr >/dev/null || { echo "ccr missing: npm install -g @musistudio/claude-code-router"; exit 1; }
+GH_TOKEN=$(gh auth token 2>/dev/null) || { echo "gh not authenticated: run 'gh auth login'"; exit 1; }
+
+CFG_DIR="$HOME/.claude-code-router"
+mkdir -p "$CFG_DIR"
+OLLAMA_BLOCK=""
+if curl -s -m 1 http://localhost:11434/api/tags >/dev/null 2>&1; then
+  OLLAMA_BLOCK=',
+    {
+      "name": "ollama",
+      "api_base_url": "http://localhost:11434/v1/chat/completions",
+      "api_key": "ollama",
+      "models": ["qwen3.5:9b"]
+    }'
+fi
+
+cat > "$CFG_DIR/config.json" <<EOF
+{
+  "LOG": false,
+  "Providers": [
+    {
+      "name": "github",
+      "api_base_url": "https://models.github.ai/inference/chat/completions",
+      "api_key": "$GH_TOKEN",
+      "models": ["openai/gpt-4.1", "openai/gpt-4o"]
+    }$OLLAMA_BLOCK
+  ],
+  "Router": {
+    "default": "github,openai/gpt-4.1",
+    "background": "${OLLAMA_BLOCK:+ollama,qwen3.5:9b}",
+    "think": "github,openai/gpt-4.1",
+    "longContext": "github,openai/gpt-4.1"
+  }
+}
+EOF
+chmod 600 "$CFG_DIR/config.json"
+echo "[claude-free] routing via GitHub Models free tier${OLLAMA_BLOCK:+ + local ollama}"
+exec ccr code "$@"
