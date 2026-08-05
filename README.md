@@ -1,3 +1,24 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="claude-free banner" width="100%" />
+</p>
+
+<h3 align="center">Keep coding after your rate limit hits</h3>
+
+<p align="center">
+  <img alt="License" src="https://img.shields.io/github/license/danielarif26/claude-free?style=for-the-badge" />
+  <img alt="Language" src="https://img.shields.io/github/languages/top/danielarif26/claude-free?style=for-the-badge" />
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/danielarif26/claude-free?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#use">Use</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="https://github.com/danielarif26/claude-free/issues">Issues</a>
+</p>
+
+---
+
 # claude-free
 
 Keep working in Claude Code after your subscription hits its rate limit — for free.
@@ -51,3 +72,8 @@ I'm S M Arifuzzaman — I built claude-free to survive my own rate-limit walls, 
 ## License
 
 MIT
+
+---
+
+Built by [S M Arifuzzaman](https://smarifuzzaman.online) — [X](https://x.com/shuvro_jaman) ·
+[Instagram](https://www.instagram.com/shuvroz) · [YouTube](https://www.youtube.com/@secretaihub)
