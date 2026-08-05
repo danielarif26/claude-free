@@ -44,6 +44,10 @@ Run it when you're rate-limited, go back to plain `claude` when your window rese
 - No automatic mid-session takeover — when Claude Code hits its limit, the session stops and you relaunch with `claude-free`. Subscription auth can't be hot-swapped.
 - Model quality is a step down from Claude. Treat it as a spare tire.
 
+## Author
+
+I'm S M Arifuzzaman — I built claude-free to survive my own rate-limit walls, and [free-seo-stack](https://github.com/danielarif26/free-seo-stack) for the same reason on the SEO side (17 prompts, bring-your-own-key, $0/month). More of my projects are at [smarifuzzaman.online](https://smarifuzzaman.online).
+
 ## License
 
 MIT
