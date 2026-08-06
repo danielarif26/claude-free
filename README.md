@@ -1,5 +1,6 @@
 <p align="center">
   <img src="assets/banner.svg" alt="claude-free banner" width="100%" />
+<img src="assets/hero.jpg" alt="origami birds leaving an open cage" width="100%">
 </p>
 
 <h3 align="center">Keep coding after your rate limit hits</h3>
